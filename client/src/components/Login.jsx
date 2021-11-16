@@ -20,7 +20,7 @@ export default props => {
         console.log(user);
         // check if the users password and the password found in db are same
         if (user && bcrypt.compareSync(password, user.password)) {
-            props.login(user._id);
+            await(props.login(user._id));
             navigate("/");
         } else {
             setErr(true);

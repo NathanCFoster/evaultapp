@@ -46,3 +46,9 @@ module.exports.findSpecPasswords = (req, res) => {
         .then(e => res.json(e))
         .catch(e => req.json({error: e}));
 }
+
+module.exports.newPass = (req, res) => {
+    model.Passwords.create(req.body)
+        .then(e => res.json(e))
+        .catch(e => res.json({error:e}));
+}

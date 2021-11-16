@@ -14,4 +14,5 @@ module.exports = app => {
 
     // passwords
     app.get("/api/passwords/:_id", controller.findSpecPasswords);
+    app.post("/api/passwords/new", controller.newPass);
 }

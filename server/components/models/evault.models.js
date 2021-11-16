@@ -18,6 +18,7 @@ const UserSchema = new mongoose.Schema({
         required: true,
         match: [/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9-]+[\.]+[a-zA-Z]{2,}$/, "Must be a valid email!"]
     },
+    showpass: {type:Boolean},
     passwords: [String]
 })
 
@@ -35,11 +36,7 @@ const ReviewSchema = new mongoose.Schema({
 
 const PasswordSchema = new mongoose.Schema({
     ownedby: String,
-    website: {
-        type: String,
-        required: [true, "Website is required"],
-        match: [/[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)/, "Must be a valid website!"]
-    },
+    website: String,
     password: String
 })
 

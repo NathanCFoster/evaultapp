@@ -1,10 +1,13 @@
 $primary: black;
 $form-check-input-checked-color: black;
+$table-hover-color: black;
 
 @import "bootstrap";
 
 .App {
   text-align: center;
+  height: 100vh;
+  width: 100%;
 }
 
 .App-logo {
