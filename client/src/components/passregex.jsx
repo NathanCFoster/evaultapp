@@ -1,0 +1,1 @@
+module.exports.validPass = new RegExp("^(?=.*?[A-Za-z])(?=.*?[0-9]).{8,}$");
