@@ -58,7 +58,7 @@ function App() {
 
   return (
     <div className="App" style={darkMode ? { backgroundColor: "#575757", color: "white" } : { backgroundColor: "", color: "black" }}>
-      {uid ?
+      {uid != null ?
         <div onScroll={handleScroll}>
           <BrowserRouter>
             <Nav uid={uid} darkMode={darkMode} scroll={navScroll} />

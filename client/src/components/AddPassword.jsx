@@ -1,10 +1,12 @@
 import { useState } from "react";
 import axios from "axios";
 import io from "socket.io-client";
-import bcrypt from 'bcryptjs';
+import cryptr from 'cryptr';
+
+
 
 const validPass = new RegExp("^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})");
-const validWebsite = new RegExp("^(?=.*[a-z])\.(?=.*[a-z])")
+const validWebsite = new RegExp("^(?=.*http://|https://)(?=.*[a-z])\.(?=.*[a-z])")
 
 export default props => {
     const { darkMode, uid, setThisState } = props;
@@ -12,6 +14,7 @@ export default props => {
     const [socket] = useState(() => io(":8000"));
     const [websiteErr, setWebsiteErr] = useState("");
     const [passErr, setPassErr] = useState(false);
+    const crypt = new cryptr("^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})");
 
     const handleSubmit = e => {
         e.preventDefault();
@@ -36,7 +39,7 @@ export default props => {
             console.log(pass);
             axios.post("http://localhost:8000/api/passwords/new", {
                 "ownedby": uid,
-                "password": bcrypt.hashSync(pass, 8),
+                "password": crypt.encrypt(pass),
                 "website":website
             }).then((d) => {
                 console.log(d);
@@ -47,7 +50,7 @@ export default props => {
             }).catch(e => console.log(e));
             setWebsite("");
         } else {
-            setWebsiteErr("Must be a valid email!");
+            setWebsiteErr("Must be a valid Website!");
         }
         
     }
